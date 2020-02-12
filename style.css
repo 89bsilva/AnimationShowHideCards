@@ -1,0 +1,173 @@
+html, body
+{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   width: 100%;
+   height: 100%;
+   font-family: 'Poppins', sans-serif;
+}
+
+.content
+{
+   min-width: 100vw;
+   min-height: 100vh;
+   display: grid;
+   grid-template-rows: 100px 1fr;
+   grid-template-areas: 
+      'controls'
+      'cards'
+   ;
+}
+
+/* CONTROLS */
+section.controls
+{
+   grid-area: controls;
+   background-color: #1abc9c;
+   border-bottom: 1px solid #2c3e5010;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+section.controls button
+{
+   width: 60px;
+   height: 60px;
+   margin: 20px;
+   outline: 0;
+   border: none;
+   border-radius: 50%;
+   background: none;
+   color: #ffffff;
+   position: relative;
+   text-decoration: none;
+   font-size: 30px;
+   transition: 0.4s;
+}
+section.controls button.click-animation
+{
+   background-color: #ffffff;
+   color: #1abc9c;
+   animation-name: decrease-increase;
+   animation-duration: .3s;
+}
+section.controls button:hover
+{
+   color: #1abc9c;
+   cursor: pointer;
+   background: #ffffff;
+}
+section.controls button::before
+{
+   position: absolute;
+   z-index: 1;
+   left: 50%;
+   top: 50%;
+   transform: translate(-50%, -50%);
+}
+section.controls button::after
+{
+   content: '';
+   position: absolute;
+   z-index: 0;
+   left: 0;
+   top: 0;
+   width: 100%;
+   height: 100%;
+   box-sizing: border-box;
+   border-radius: 50%;
+   transition: 0.4s;
+}
+section.controls button:hover::after
+{
+   transform: scale(1.4);
+   opacity: 0;
+   background-color: #ffffff;
+   border: 4px solid #ffffff;
+}
+
+/* CARDS */
+section.cards
+{
+   grid-area: cards;
+   display: flex;
+   flex-flow: row wrap;
+   justify-content: center;
+   padding: 10px;
+   background-color: #1abc9cea;
+}
+
+section.cards .card
+{
+   border: 2px dashed red;
+   margin: 10px;
+   border-radius: 5px;
+   width: 320px;
+   height: 320px;
+   visibility: hidden;
+   opacity: 0;
+   transition: 0.4s;
+   transform: scale(0.1);
+}
+section.cards .card.show
+{
+   visibility: visible;
+   opacity: 1;
+   transform: scale(1);
+}
+
+/* TOLLTIP */
+button .tooltip
+{
+   position: absolute;
+   top: 75px;
+   left: 50%;
+   width: 200px;
+   font-size: 0.5em;
+   background-color: #fff;
+   padding: 5px;
+   color: #2c3e50;
+   font-family: 'Poppins', sans-serif;
+   font-weight: 300;
+   border-radius: 5px;
+   box-sizing: border-box;
+   visibility: hidden;
+   opacity: 0;
+   transition: 0.4s;
+   transform: translateX(-50%);
+   z-index: 1;
+}
+button:hover .tooltip
+{
+   visibility: visible;
+   opacity: 1;
+}
+
+button .tooltip::before
+{
+   content: '';
+   position: absolute;
+   width: 25px;
+   height: 25px;
+   top: 0;
+   left: 44.5%;
+   transform: translateX(-50%);
+   transform: rotate(45deg);
+   background-color: #fff;
+   border-radius: 2px;
+   z-index: -1;
+}
+
+@keyframes decrease-increase
+{
+   0% {
+      transform: scale(1);
+   }
+   50% {
+      transform: scale(0.8);
+   }
+   100% {
+      transform: scale(1);
+   }
+}
